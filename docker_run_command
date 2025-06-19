@@ -1,0 +1,9 @@
+xhost +
+docker run -it --privileged --net=host \
+    -v ~/titra_ws/src:/titra_ws/src:rw \
+    -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+    -e DISPLAY=$DISPLAY \
+    --name=px4_devenv px4io/px4-dev-simulation-focal:latest bash
+git config --global --add safe.directory '*'
+cd /titra_ws/src/PX4-Autopilot/
+make px4_sitl gazebo_plane
