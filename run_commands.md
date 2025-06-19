@@ -1,4 +1,4 @@
-1'st Terminal:
+## 1'st Terminal:
 ```bash
 xhost +
 docker run -it --privileged --net=host \
@@ -14,13 +14,25 @@ cd /titra_ws/src/PX4-Autopilot/
 make px4_sitl gazebo_plane
 ```
 
-2'nd Terminal:
+## 2'nd Terminal:
 ```bash
 ./QGroundControl-x86_64.AppImage
 ```
 
-3'rd Terminal:
+## 3'rd Terminal:
 ```bash
 source /opt/ros/humble/setup.bash
 ros2 launch mavros px4.launch fcu_url:="udp://:14540@localhost:14557"
+```
+
+## 4'th Terminal (Each time you change code (Re-Build))
+Once
+```bash
+source /opt/ros/humble/setup.bash
+```
+```bash
+colcon build --packages-select uav_control
+source /install/setup.bash
+ros2 launch mavros px4.launch fcu_url:="udp://:14540@localhost:14557"
+ros2 run uav_control uav_control_node
 ```
